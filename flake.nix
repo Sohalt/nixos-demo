@@ -13,20 +13,22 @@
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
         hello-pkgs = nixpkgs-hello.legacyPackages.${system};
+        hello-rc = hello-pkgs.hello.overrideAttrs (oldAttrs: {
+          patches = [./hello.patch];
+          doCheck = false;
+        });
       in {
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
-            (hello-pkgs.hello.overrideAttrs (oldAttrs: {
-              patches = [./hello.patch];
-              doCheck = false;
-            }))
             cowsay
+            hello-rc
           ];
           FOO = "bar";
           shellHook = ''
             echo "Happy hacking!"
           '';
         };
+        packages.hello-rc = hello-rc;
       }
     );
 }
