@@ -3,12 +3,14 @@
     nixpkgs-hello.url = "github:nixos/nixpkgs/942b0817e898262cc6e3f0a5f706ce09d8f749f1";
     utils.url = "github:numtide/flake-utils";
     clj-nix.url = "github:jlesquembre/clj-nix";
+    disko.url = "github:nix-community/disko";
   };
   outputs = {
     self,
     nixpkgs,
     nixpkgs-hello,
     clj-nix,
+    disko,
     utils,
   }:
     utils.lib.eachDefaultSystem (
@@ -61,6 +63,7 @@
         system = "x86_64-linux";
         modules = [
           {imports = [./nixos-configuration.nix];}
+          disko.nixosModules.disko
         ];
       };
     };
