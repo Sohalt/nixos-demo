@@ -22,6 +22,7 @@
           buildInputs = with pkgs; [
             cowsay
             hello-rc
+            clojure
           ];
           FOO = "bar";
           shellHook = ''
