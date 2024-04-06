@@ -16,6 +16,7 @@
             hello
             cowsay
           ];
+          FOO = "bar";
         };
       }
     );
