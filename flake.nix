@@ -13,7 +13,9 @@
       in {
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
-            hello
+            (hello.overrideAttrs (oldAttrs: {
+              patches = [./hello.patch];
+            }))
             cowsay
           ];
           FOO = "bar";
