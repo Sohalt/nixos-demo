@@ -17,6 +17,9 @@
             cowsay
           ];
           FOO = "bar";
+          shellHook = ''
+            echo "Happy hacking!"
+          '';
         };
       }
     );
