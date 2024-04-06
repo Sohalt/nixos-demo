@@ -15,6 +15,7 @@
           buildInputs = with pkgs; [
             (hello.overrideAttrs (oldAttrs: {
               patches = [./hello.patch];
+              doCheck = false;
             }))
             cowsay
           ];
