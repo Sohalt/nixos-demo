@@ -20,6 +20,14 @@
     pkgs.gitMinimal
   ];
 
+  services.hedgedoc = {
+    enable = true;
+    settings = {
+      domain = "pad.soha.lt";
+      protocolUseSSL = true;
+    };
+  };
+
   users.users.root.password = "";
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [
