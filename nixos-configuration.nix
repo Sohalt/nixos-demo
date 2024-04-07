@@ -1,5 +1,6 @@
 {
   modulesPath,
+  config,
   lib,
   pkgs,
   ...
@@ -25,6 +26,15 @@
     settings = {
       domain = "pad.soha.lt";
       protocolUseSSL = true;
+    };
+  };
+
+  services.caddy = {
+    enable = true;
+    virtualHosts = {
+      "pad.soha.lt".extraConfig = ''
+        reverse_proxy localhost:${toString config.services.hedgedoc.settings.port}
+      '';
     };
   };
 
