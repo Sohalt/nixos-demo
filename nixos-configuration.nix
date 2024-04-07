@@ -38,6 +38,8 @@
     };
   };
 
+  networking.firewall.allowedTCPPorts = [80 443];
+
   users.users.root.password = "";
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [
