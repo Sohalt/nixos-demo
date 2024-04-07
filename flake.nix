@@ -62,7 +62,12 @@
       nixosConfigurations.demo = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          {imports = [./nixos-configuration.nix];}
+          {
+            imports = [
+              ./nixos-configuration.nix
+              (import ./module.nix self.packages.x86_64-linux.hello-server)
+            ];
+          }
           disko.nixosModules.disko
         ];
       };

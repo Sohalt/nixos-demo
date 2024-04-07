@@ -29,11 +29,19 @@
     };
   };
 
+  services.hello-server = {
+    enable = true;
+    port = 1234;
+  };
+
   services.caddy = {
     enable = true;
     virtualHosts = {
       "pad.soha.lt".extraConfig = ''
         reverse_proxy localhost:${toString config.services.hedgedoc.settings.port}
+      '';
+      "hello.soha.lt".extraConfig = ''
+        reverse_proxy localhost:${toString config.services.hello-server.port}
       '';
     };
   };
