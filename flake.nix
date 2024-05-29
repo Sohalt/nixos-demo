@@ -49,6 +49,10 @@
         packages = {
           hello-rc = hello-rc;
           hello-server = hello-server;
+          make-docker-image = pkgs.dockerTools.streamLayeredImage {
+            name = "hello-server";
+            config.Cmd = ["${hello-server}/bin/hello-server" "8080"];
+          };
         };
       }
     );
