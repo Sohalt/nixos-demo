@@ -27,6 +27,11 @@
           name = "hello-server";
           version = "1.0";
           main-ns = "hello-server";
+          nativeBuildInputs = [pkgs.makeWrapper];
+          postInstall = ''
+            wrapProgram $binaryPath --prefix PATH : $out/bin:${nixpkgs.lib.makeBinPath [hello-rc]}
+            chmod +x $out/bin/*
+          '';
         };
       in {
         devShell = pkgs.mkShell {
